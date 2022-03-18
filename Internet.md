@@ -72,6 +72,12 @@
 >ISP에 연결된 우리의 네트워크는 메세지 데이터를 보내게되면, ISP 네트워크를 통해서 대상 네트워크로 전달됩니다. 인터넷은 이러한 전체 네트워크 인프라로 구성이 되어있습니다. 
 
 
+---
 
+<br>
 
+참고 사이트 :
+* https://development-crow.tistory.com/3
+* https://developer.mozilla.org/ko/docs/Learn/Common_questions/How_does_the_Internet_work
+* https://velog.io/@cks3066/%EC%9D%B8%ED%84%B0%EB%84%B7%EC%9D%B8%ED%84%B0%EB%84%B7%EC%9D%98-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC
 
