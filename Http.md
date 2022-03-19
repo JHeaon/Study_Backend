@@ -23,7 +23,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/Http_1.webp">
+    <img src = "Pictures/Http_1.webp">
 </p>
 
 <br>
@@ -48,7 +48,7 @@
 <BR>
 
 <p align = "center">
-    <img src = "Picture/Http_2.png">
+    <img src = "Pictures/Http_2.png">
 </p>
 
 <br>
@@ -67,7 +67,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/Http_3.webp">
+    <img src = "Pictures/Http_3.webp">
 </p>
 
 <br>
@@ -81,7 +81,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/Http_4.png">
+    <img src = "Pictures/Http_4.png">
 </p>
 
 <br>
@@ -112,7 +112,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/Http_5.png">
+    <img src = "Pictures/Http_5.png">
 </p>
 
 <br>
@@ -134,7 +134,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/Http_6.png">
+    <img src = "Pictures/Http_6.png">
 </p>
 
 <br>
@@ -150,7 +150,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/Http_7.png">
+    <img src = "Pictures/Http_7.png">
 </p>
 
 <br>
@@ -162,7 +162,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/Http_8.png">
+    <img src = "Pictures/Http_8.png">
 </p>
 
 <br>
