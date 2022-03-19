@@ -17,7 +17,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/internet_1.png">
+    <img src = "Pictures/internet_1.png">
 </p>
 
 
@@ -28,7 +28,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/internet_2.png">
+    <img src = "Pictures/internet_2.png">
 </p>
 
 
@@ -39,7 +39,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/internet_3.png">
+    <img src = "Pictures/internet_3.png">
 </p>
 
 
@@ -50,7 +50,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/internet_4.png">
+    <img src = "Pictures/internet_4.png">
 </p>
 
 <br>
@@ -60,7 +60,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Picture/internet_5.png">
+    <img src = "Pictures/internet_5.png">
 </p>
 
 <br>
