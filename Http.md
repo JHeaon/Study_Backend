@@ -23,7 +23,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Http_1.webp">
+    <img src = "Picture/Http_1.webp">
 </p>
 
 <br>
@@ -48,7 +48,7 @@
 <BR>
 
 <p align = "center">
-    <img src = "Http_2.png">
+    <img src = "Picture/Http_2.png">
 </p>
 
 <br>
@@ -67,7 +67,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Http_3.webp">
+    <img src = "Picture/Http_3.webp">
 </p>
 
 <br>
@@ -81,7 +81,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Http_4.png">
+    <img src = "Picture/Http_4.png">
 </p>
 
 <br>
@@ -112,7 +112,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Http_5.png">
+    <img src = "Picture/Http_5.png">
 </p>
 
 <br>
@@ -134,7 +134,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Http__6.png">
+    <img src = "Picture/Http_6.png">
 </p>
 
 <br>
@@ -150,7 +150,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Http_7.png">
+    <img src = "Picture/Http_7.png">
 </p>
 
 <br>
@@ -162,7 +162,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Http_8.png">
+    <img src = "Picture/Http_8.png">
 </p>
 
 <br>
@@ -175,12 +175,6 @@
 
 
 <br>
-
-
-
-
-
-
 <br>
 
 참고 사이트 :
