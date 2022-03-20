@@ -12,7 +12,8 @@
 
 <p align = "center">
     <img src = "Pictures\Browser_1.png">
-    <2010년부터 2020년 까지의 브라우저 시장 점유율 표>
+    <br>
+    <2010년부터 2020년 까지의 브라우저 시장 점유율 표>   
 </p>
   
 <br>
