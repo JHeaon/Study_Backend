@@ -120,6 +120,8 @@ Interrupt에는 2가지가 존재한다. I/O, 메모리, CPU와 관련된 H/W in
 
 두 번째로는 Timer가있는데 프로세스들에게 유효 시간을 부여하여 그 시간이 지나면 프로세스를 종료 시켜 Error가 발생하여 작업이 멈추더라도 CPU를 계속 점유하는 것을 방지한다.
 
+<br><br>
+
 참고 사이트 :
 * https://velog.io/@brian_kim/OS-%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B5%AC%EC%A1%B0%EC%99%80-%EC%9B%90%EB%A6%AC
 * https://velog.io/@qkrqudcks7/OS%EC%9D%98-%EC%9E%91%EB%8F%99%EC%9B%90%EB%A6%AC%EB%9E%80
