@@ -8,6 +8,8 @@
 - <a href="Http.md">HTTP란?</a>
 - <a href="Browser.md">브라우저와 그 작동 원리</a>
 - <a href="DNS.md">DNS와 그 작동 원리</a>
+- <a href="DomainName.md">도메인 이름이란?</a>
+- <a href="Hosting.md">호스팅 이란?</a>
 ### 2. OS에 대한 전반적인 지식
 
 
