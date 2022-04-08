@@ -1,4 +1,4 @@
-# GitHub 사용법
+# GitHub 
 
 ## GitBash 명령어
 ---
