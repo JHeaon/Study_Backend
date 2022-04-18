@@ -1,6 +1,8 @@
 # Backend_study
 
-## Backend_study 로드맵에 Computer Science 내용을 정리합니다.
+## Backend_study
+로드맵에 따라서 차근차근 정리해 나아가는 백엔드 스터디 입니다.
+
 ### 0. 마크다운 사용법
 - <a href="Study\Markdown.md">마크 다운 사용법 </a>
 ### 1. 인터넷
