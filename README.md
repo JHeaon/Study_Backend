@@ -22,8 +22,8 @@
 ### 📖 FrameWork에 대한 전반적인 지식
 - <a href="Study\Django.md">Django 사용법</a>
 ### 📖 Programing 언어 및 자료구조 공부
-- <a href="[DataStructure and Algorithm](https://blog.naver.com/jinhan814/222439886998)">DataStructure and Algorithm </a> // Jinhan`s note 네이버 블로그
-- <a href="[Python, C++](https://github.com/JHeaon/Beakjoon)">Python, C++ 알고리즘 문제 풀이</a>
+- [DataStructure and Algorithm](https://blog.naver.com/jinhan814/222439886998) // Jinhan`s note 네이버 블로그 참고
+- [Python, C++ 알고리즘 문제 풀이](https://github.com/JHeaon/Beakjoon)
 ### 📖 Github 사용법
 - <a href="Study\Github.md">Github 사용법</a>
 ### 📖 Database 사용법
