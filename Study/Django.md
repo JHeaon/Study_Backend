@@ -253,7 +253,7 @@ Controller  ->    View
 
 <br>
 
-## Django 정적파일 관리하기
+## 4 - 11 Django 정적파일 관리하기
 정적파일이란 웹 페이지를 렌더링 하는 과정에서 필요한 추가적인 파일을 의미한다.
 
 <p align="center">
@@ -276,7 +276,7 @@ Controller  ->    View
 
 <br>
 
-## Django Template 와 static 폴더 구조 
+## 4 - 12 Django Template 와 static 폴더 구조 
 
 <p align="center">
     <img src = "../Pictures\Django_11.png">
@@ -298,7 +298,133 @@ template 와 static 폴더의 구조를 보면 그 안에 app의 이름이 함�
 
 <br>
 
-## Django의 템플릿 언어
+## 4 - 13 Django의 템플릿 언어
 정적이 아닌 동적으로 웹페이지를 움직이는데 사용하는 언어라고 할 수 있다.
 
+템플릿 언어에는 템플릿 변수, 템플릿 태그, 템플릿 필터, 템플릿 주석이 존재한다.
 
+> 템플릿 변수 : {{변수명}}
+* 우리가 지정한 데이터로 변환
+* view 에서 넘겨 받은 값으로 변환
+```
+value = {
+    title : "django"
+    version : 1. 0
+}
+접근할때는 codeit.title
+```
+> 템플릿 필터 : {{변수명 | 필터}}
+* 템플릿 변수를 특정 형식으로 변환 
+
+> 템플릿 태그 : {% 태그 %} {% end태그 %}
+* 템플릿 작성에 용이하게 하기 위해 사용
+```
+{% for %}
+{% end for %}
+{% if %}
+{% else %}
+{% endif %}
+```
+> 템플릿 주석 : 
+* 주석 용도로 사용
+```
+{# 내용 #}
+```
+
+<br>
+
+## 4 - 14 중복되는 템플릿 코드 없애기
+{%block%}, {%extends%} 를 사용하여 템플릿 상속을 통해서 사용한다.
+
+<p align="center">
+    <img src = "../Pictures\Django_14.png">
+</p>
+
+일단 index.html의 뼈대를 가져올 html 파일인 base.html을 템플릿에 만든다.
+그리고 index.html에 있는 모든 내용을 복사해 base.html 에 담는다.
+
+<p align="center">
+    <img src = "../Pictures\Django_15.png">
+</p>
+
+이제 base는 기본 뼈대가 되고 변경되는 내용을 index.html에 담을 준비를 한다.
+그 행위는 아래와 같다. 
+
+<p align="center">
+    <img src = "../Pictures\Django_16.png">
+</p>
+
+이러면 부모 템플릿이 준비되었다고 할 수 있다. 
+
+<p align="center">
+    <img src = "../Pictures\Django_17.png">
+</p>
+
+이제 index.html로 넘어와서 부모 템플릿의 내용을 삭제하고 헤더 첫줄에
+{% extends '부모 템플릿 경로' %}을 적어준다 맨 첫줄에 적어야 한다.
+그리고 나서 아까 있던 블럭들의 내용을 채우면 된다. 그 예는 아래와 같다.
+
+<p align="center">
+    <img src = "../Pictures\Django_18.png">
+</p>
+
+만약에 자식 템플릿에 내용이 없다면, 부모 템플릿의 내용을 따라 간다.
+
+<br>
+
+## 4 - 15 계속 변하는 동적 웹 페이지 만들기
+
+만들기 전에 앞서 MVT 구조를 보자.
+
+<p align="center">
+    <img src = "../Pictures\Django_19.png">
+</p>
+
+여기서 우리는 View 에서 템플릿으로 가고 그것을 화면으로 보내는 부분을 건드려볼 예정이다. 
+
+일단 날짜를 현재에 맞게 만들어주도록 만들어 보겠다. 일단 템플릿은 views 에서 쏴주니까, views 에서 함수를 만든다.
+
+<p align="center">
+    <img src = "../Pictures\Django_20.png">
+</p>
+
+datatime 라이브러리를 통해 today라는 변수에 날짜를 담았으니 이것을 템플릿으로 보내주면 된다. 이때 값을 넘겨주는 방법은 render 함수에 세 번째 파라미터로 넘겨주면 되며 이때 값은 dict 형태로 넘겨주어야 한다. 따라서 그것을 하여 만들게 되면, 
+
+<p align="center">
+    <img src = "../Pictures\Django_21.png">
+</p>
+
+자 이렇게 하면 해당 템플릿에 정보가 가게 되고 그 정보를 사용하는 변수인 템플릿 변수를 사용하여 처리 하면 된다. 처리방법은 아래와 같다.
+
+<p align="center">
+    <img src = "../Pictures\Django_22.png">
+</p>
+
+
+<br>
+
+
+## 4 - 15 Django의 우아한 URL
+
+Django는 URL의 형태를 우아하게 만들수 있는데, 이를 우아한 URL이라고도 한다. URL을 우리가 원하는 형태로 구성할 수 있으며, 직관적이고 알아보기 쉬운 구조를 가졌다. 만약에 chicken 이라는 새로운 html을 만들고 그를 연결하고자 한다면,
+
+<p align="center">
+    <img src = "../Pictures\Django_23.png">
+</p>
+
+에 view까지 만들어 처리하면 되지만, 모든 메뉴에 대한 상세 페이지를 만들어야 한다면 많은 반복이 필요하다. 따라서 이를 동적으로 정리할 필요가 있는데 이를 동적 URL이라고 한다. 이를 사용하는 방법은 다음과 같다.
+
+<p align="center">
+    <img src = "../Pictures\Django_24.png">
+</p>
+
+여기서 <str:food>의 인수가 views에 넘어가게 되는데 이를 받아서 처리 할수 있다. 
+
+<p align="center">
+    <img src = "../Pictures\Django_25.png">
+</p>
+<p align="center">
+    <img src = "../Pictures\Django_26.png">
+</p>
+
+이러면 이제 menu/"아무이름" 을 치게 되면 화면에 url에서 받은 변수의 이름이 화면에 나타나게 된다. 
