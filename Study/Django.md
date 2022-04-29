@@ -428,3 +428,358 @@ Django는 URL의 형태를 우아하게 만들수 있는데, 이를 우아한 UR
 </p>
 
 이러면 이제 menu/"아무이름" 을 치게 되면 화면에 url에서 받은 변수의 이름이 화면에 나타나게 된다. 
+
+<br>
+
+## 4 - 16 django에서의 에러페이지 처리
+일반적으로 상태코드를 통해 어떤 에러가 떳는지 확인할수 있으며, 그에 따라 적당한 대처가 가능하다 장고에서도 이런 에러를 처리하기 위해서 자체적으로 툴을 제공하고 있다. 
+
+```
+from django.shortcuts import render
+from django.http import HttpResponse
+from datetime import datetime
+
+# Create your views here.
+def index(request):
+    today = datetime.today().date()
+    context = {"date" : today}
+    return render(request, 'foods/index.html', context=context)
+
+def food_detail(request, food):
+    context = dict()
+    if food == "chicken":
+        pass
+    else:
+        raise Http404("이런 음식은 없다구요!")
+    
+    return render(request, 'foods/detail.html', context=context)
+```
+처럼 치킨일 경우 해당 페이지를 처리하지만, 만약 치킨이 아닌 다른 것이 올 경우 
+raise Http404("")를 사용하면된다. 여기서 raise는 파이썬에서 지정한 에러를 강제로 발생시키는 함수이다. 
+
+<br>
+
+## 4 - 17 django의 Model 이해
+
+<p align="center">
+    <img src = "../Pictures\Django_27.png">
+</p>
+
+각각의 데이터가 어떤 형식으로 들어갈지 미리 정하는 것을 데이터 모델링이라고 한다. 즉 요구 사항에 맞게 짜는 것을 의미한다.
+
+<p align="center">
+    <img src = "../Pictures\Django_28.png">
+</p>
+
+이런 데이터들을 저장하는 곳이 데이터베이스며 데이터 베이스 종류로는 위와 같은 것들이 있다.
+
+여기서 데이터들을 추가, 조회, 수정, 삭제를 거쳐야 하는데 이 특성을 (Create Read Update Delete) 라고도 하며 SQL문으로 조절한다. 
+
+하지만 SQL문을 새로배우기에는 빠듯하기 때문에 장고에서는 ORM(Object-Relational Mapper)을 통해서 소통 할 수 있도록 해준다.
+
+즉 이런 그림이 나온다고 할 수 있다.
+
+
+<p align="center">
+    <img src = "../Pictures\Django_29.png">
+</p>
+
+<br>
+
+## 4 - 18 django의 Model 작성
+
+만약 음식을 데이터에 저장하고 사용하고 싶으면 다음과 같이한다. 
+```
+from django.db import models
+
+# Create your models here.
+class Menu(model.Model):
+     name = models.CharField(max_length=50)
+     description = models.CharField(max_length=100)
+     price = models.IntegerField()
+     img_path = models.CharField(max_length=255)
+
+     def __str__(self):
+         return self.name
+```
+여기서 Menu클래스는 model.Model을 상속받아서 한다는 의미이고, models.TYPEField(길이) 를 통해서 각각을 구성한다. 그런 다음 장고에게 모델이 바뀌었다라는것을 알려주어야 한다.
+
+<p align="center">
+    <img src = "../Pictures\Django_30.png">
+</p>
+
+해당 명령어는 python - makemigrations 을 통해서 모델을 등록하고 migrate를 통해서 모델을 생성하는 절차를 밞는다.
+
+<br>
+
+## 4 - 18 마이그레이션(migrations)이란?
+
+아까 전에 했던 내용을 살펴 보면 모델을 등록하고 생성하는 작업이었다. 
+
+<p align="center">
+    <img src = "../Pictures\Django_31.png">
+</p>
+
+마이그레이션(Migration)은 모델(Model)의 변경 사항 즉 Django 프로젝트의 데이터 구조 변경 사항을 관리하기 위한 Django만의 관리 방법입니다. 변경될 때마다 히스토리를 하나씩 만들어 두고 마치 블럭을 갈아 끼우듯 생성한 히스토리를 실제 데이터베이스에 반영하는 거죠. 그리고 이 모든 과정은 Django의 ORM(Object-Relational Mapping)을 통해 진행됩니다.
+
+우리는 앞에서 4가지 명령어를 사용했는데 여기서 간단히 다시 짚어보겠습니다.
+
+* makemigrations
+* migrate
+* showmigrations
+* sqlmigrate
+
+```
+python manage.py makemigrations
+```
+모델의 변경 사항을 인식해서 새로운 마이그레이션을 만듭니다. 이때 마이그레이션은 각 앱 디렉토리 내 migrations 디렉토리 안쪽에 생성됩니다.
+
+```
+python manage.py migrate
+```
+생성된 최신 버전의 마이그레이션을 데이터베이스에 반영합니다. 만약 이전 마이그레이션으로 되돌리고 싶다면 python manage.py migrate {앱 이름} {되돌릴 마이그레이션 번호}를 사용할 수 있습니다.
+```
+python manage.py showmigrations
+```
+현재 django 프로젝트의 모든 마이그레이션과 반영 상태를 나타냅니다. 만약 특정 앱에 대한 것만 보고 싶다면 python manage.py showmigrations {앱 이름}을 사용할 수 있습니다.
+```
+python manage.py sqlmigrate {앱 이름} {마이그레이션}
+```
+인수로 넘겨준 마이그레이션이 ORM을 통해 변경된 SQL문을 출력합니다. sqlmigrate를 통해 모델이 의도한 대로 SQL문으로 변경되어 데이터베이스에 반영되었는지 확인할 수 있습니다.
+
+<br>
+
+## 4 - 18 모델 데이터 CRUD
+python manage.py shell 
+을 통해서 쉘을 킵니다. 
+
+<br>
+
+1. 데이터 추가하기 (Create)
+
+데이터를 추가하기 위해서는 import를 이용해서 먼저 사용할 Model을 불러 와야 합니다.
+```
+from {app_name}.models import {model}
+
+data_model = {model}.objects.create( {field_name}=value, ... )
+# example
+# food = Food.objects.create(price=10000)
+```
+2. 데이터 조회하기 (Read)
+   
+데이터 모델의 모든 데이터를 가져오기 위해서는 all()을 사용합니다.
+```
+# 모든 데이터 조회하기
+data = {model}.obejcts.all()
+
+# 하나의 데이터 조회하기
+data = {model}.objects.get(field=value)
+
+# 조건에 맞는 여러 데이터 조회하기
+data = {model}.objects.filter(field=value)
+
+# 정렬해서 데이터 조회하기
+data = {model}.objects.order_by('field_1', '-field_2')
+field_1을 기준으로 오름차순으로 정렬하고 
+그 결과를 다시 field_2를 기준으로 내림차순으로 정렬합니다.
+
+# 데이터의 개수 세기
+rows = {model}.objects.count()
+
+# 조건을 걸어서 조회하기 
+
+__exact, __iexact
+__exact는 대소문자를 구분해서 조건과 정확히 일치 하는지를 체크하며
+__iexact는 대소문자를 구분 하지 않고 일치하는 지를 체크합니다.
+data = {model}.objects.filter(name__iexact='chicken')
+
+__contains, __icontains
+지정한 문자열을 포함 하는지를 체크합니다. 
+마찬가지로 __icontains는 대소문자를 구분하지 않고 체크합니다.
+data = {model}.objects.filter(name__contains='chicken')
+
+__range
+지정한 범위 내에 포함 되는지 체크합니다.
+날짜, 숫자 문자 등 모든 데이터의 범위를 사용할 수 있으며 파이썬의 range와 비슷합니다.
+data = {model}.objects.filter(price__range=(1000,5000))
+```
+
+3. 데이터 수정하기(Update)
+데이터를 수정하기 위해서는 수정할 데이터 객체를 가져온 다음 원하는 필드를 수정하고 save()를 호출하여 데이터베이스에 반영하면 됩니다.
+```
+data = {model}.objects.get(id=1)
+data.name = 'Woojae'
+data.save()
+```
+4. 데이터 삭제하기(Delete)
+데이터를 삭제하기 위해서는 삭제할 데이터 객체를 가져온 다음 delete()를 호출하면 됩니다.
+```
+data = {model}.objects.get(id=3)
+data.delete()
+```
+
+<br>
+
+## 4 - 19 QuerySet이란?
+
+<p align="center">
+    <img src = "../Pictures\Django_32.png">
+</p>
+데이터와 소통할때 생기는 자료형으로 리스트와 비슷하다.
+
+
+<br>
+
+## 4 - 20 관리자 도구 사용하기
+
+<p align="center">
+    <img src = "../Pictures\Django_34.png">
+</p>
+
+일단 관리자 아이디와 비밀번호를 만든다.
+
+<p align="center">
+    <img src = "../Pictures\Django_33.png">
+</p>
+
+admin.py 에서 우리가 만든 모델을 등록한다.
+사이트에 접속후 admin 으로 접속하면 모델을 관리할수있다!
+
+<br>
+
+## 4 - 21 모델 적용하기
+
+템플릿에서 이제 모델을 이용하여 데이터를 사용하는 방법을 배워보자
+<p align="center">
+    <img src = "../Pictures\Django_35.png">
+</p>
+
+일단 모델을 import 해준다.
+<p align="center">
+    <img src = "../Pictures\Django_36.png">
+</p>
+
+```
+menus = Menu.object.all()
+context["menus"] = menus
+```
+메뉴s라는 변수를 만든다음에 menus를 넣는다.
+
+<p align="center">
+    <img src = "../Pictures\Django_37.png">
+</p>
+
+템플릿을 적절하게 조절하여 만들어준다.
+
+
+<br>
+
+## 4 - 22 djgngo 배포하기
+
+배포하는데 서버의 컴퓨터가 존재한다. 배포하는 방식은 2가지가 있다.
+
+<p align="center">
+    <img src = "../Pictures\Django_38.png">
+</p>
+
+두 서비스의 차이는 개발자가 어디까지 영향을 미칠수 있는가 이다.
+
+* Iaas : 서버 장비 + 운영체제만 제공
+  
+대표적인 예로는 아마존 aws_ec2 가있습니다.
+  
+* paas : 서버 장비 + 운영체제 + 실행환경 제공
+
+대표적인 예로는 aws_elastic beanstalk, googld app engine, heroku 정도가 있습니다. 
+
+배포하기전 여러 과정을 지켜야 하는데, 방법은 다음과 같다.
+
+1. 디버그 모드 끄기
+   
+디버그는 에러를 잡아주는 역활을 하는데 만약 템플릿이름이 바뀌는 경우 에러 페이지에서 어느 파일에 어떤 것이 있는지 경로를 알려줌으로 해킹에 취약 할 수가 있다. 따라서 이를 방지하기 위해서 디버그 모드를 꺼야 한다.
+
+<p align="center">
+    <img src = "../Pictures\Django_39.png">
+</p>
+
+2. 호스트 설정하기
+
+<p align="center">
+    <img src = "../Pictures\Django_40.png">
+</p>
+
+ALLOWED_HOSTS = [] 안에 호스트로 지정한 서버의 내용을 기입한다.
+
+3. 정적 파일 한곳으로 모으기
+
+<p align="center">
+    <img src = "../Pictures\Django_41.png">
+</p>
+
+서버가 우리 정적파일을 찾아주기 위해서 static_url 밑에 static_root를 적어주어야 합니다. 
+
+
+<p align="center">
+    <img src = "../Pictures\Django_42.png">
+</p>
+
+그런 다음 해당 명령어를 입력해 static 파일을 한곳으로 모아줍니다.
+
+<br>
+
+## 4 - 22 djgngo 배포하기 _ pythonanywhere
+
+1. 프로젝트 디렉토리를 전체 압축합니다.
+
+<p align="center">
+    <img src = "../Pictures\Django_43.png">
+</p>
+
+2. pythonanywhere 에 가입
+   
+<p align="center">
+    <img src = "../Pictures\Django_44.png">
+</p>
+
+3. files 을 누르고 압축했던 파일 업로드 합니다. 
+
+
+
+
+
+
+<p align="center">
+    <img src = "../Pictures\Django_45.png">
+</p>
+
+
+4. open bash 창을 열어 줍니다. 
+
+<p align="center">
+    <img src = "../Pictures\Django_46.png">
+</p>
+
+해당 창을 열고 unzip 을 통해서 압축을 풀어줍니다.
+
+5. 가상 환경 조성하기
+우리는 파이썬 3.7 버전을 사용했으니 그에 따른 환경을 조성해주어야 합니다.
+
+<p align="center">
+    <img src = "../Pictures\Django_47.png">
+</p>
+
+```
+virtualenv --python=python3.7 django-evns
+를 입력하여 파이썬 3.7의 가상환경을 조성합니다.
+그리고 나서 django-envs 파일안으로 들어가서
+source bin/activate 를 통해 환경을 적용시켜줍니다.
+마지막으로는 그 환경에 django==2.2 버전을 설치해줍니다.
+```
+
+6. 오른쪽 상단 웹을 누르고 들어가기
+   
+<p align="center">
+    <img src = "../Pictures\Django_48.png">
+</p>
+
+Code 부분에 코드위치를 적어줍니다.
