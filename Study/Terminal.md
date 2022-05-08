@@ -12,7 +12,7 @@
 <br>
 
 <p align = "center">
-    <img src = "Pictures\Terminal_1.png">
+    <img src = "..\Pictures\Terminal_1.png">
 </p>
 
 <br>
